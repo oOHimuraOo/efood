@@ -2,7 +2,7 @@ import * as S from './styles'
 import texture from '../../assets/Images/texture.png'
 import logo from '../../assets/Images/logo.png'
 import { Container } from '../../utils/Global_Styles'
-
+import logoInvisivel from '../../assets/Images/Restaurantes/Logo_Invisivel.png'
 type props = {
   banner: 'home' | 'restaurant'
   imagemRestaurante?: string
@@ -31,7 +31,11 @@ const Banner = ({
     <S.BannerImagem style={{ backgroundImage: `url(${imagemRestaurante})` }}>
       <Container>
         <S.EstiloRestaurante>{estiloRestaurante}</S.EstiloRestaurante>
-        <S.LogoRestaurante src={logoRestaurante} alt={nomeRestaurante} />
+        {logoRestaurante !== '' ? (
+          <S.LogoRestaurante src={logoInvisivel} alt={''} />
+        ) : (
+          <S.LogoRestaurante src={logoRestaurante} alt={nomeRestaurante} />
+        )}
         <S.NomeRestaurante>{nomeRestaurante}</S.NomeRestaurante>
       </Container>
     </S.BannerImagem>
