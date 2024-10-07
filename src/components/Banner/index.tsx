@@ -31,10 +31,10 @@ const Banner = ({
     <S.BannerImagem style={{ backgroundImage: `url(${imagemRestaurante})` }}>
       <Container>
         <S.EstiloRestaurante>{estiloRestaurante}</S.EstiloRestaurante>
-        {logoRestaurante !== '' ? (
+        {logoRestaurante === '' ? (
           <S.LogoRestaurante src={logoInvisivel} alt={''} />
         ) : (
-          <S.LogoRestaurante src={logoRestaurante} alt={nomeRestaurante} />
+          <S.LogoRestaurante src={logoRestaurante} alt={logoRestaurante} />
         )}
         <S.NomeRestaurante>{nomeRestaurante}</S.NomeRestaurante>
       </Container>

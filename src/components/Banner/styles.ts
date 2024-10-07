@@ -44,7 +44,7 @@ export const BannerImagem = styled.div`
 
   &::before {
     position: absolute;
-    top: 205px;
+    top: 210px;
     left: 0;
     width: 100%;
     height: 280px;
