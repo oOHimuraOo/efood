@@ -47,7 +47,7 @@ export const BannerImagem = styled.div`
     top: 203px;
     left: 0;
     width: 100%;
-    height: 280px;
+    height: 285px;
     background-color: ${V.Colors.Preto};
     opacity: 0.75;
     content: '';
