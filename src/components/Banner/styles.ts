@@ -44,10 +44,10 @@ export const BannerImagem = styled.div`
 
   &::before {
     position: absolute;
-    top: 203px;
+    top: 205px;
     left: 0;
     width: 100%;
-    height: 285px;
+    height: 280px;
     background-color: ${V.Colors.Preto};
     opacity: 0.75;
     content: '';
