@@ -1,65 +1,41 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Banner from '../../components/Banner'
 import FoodList from '../../components/FoodList'
-import FoodClass from '../../models/food'
-import { useEffect } from 'react'
-import imageTemp from '../../assets/Images/Restaurantes/01.png'
-
-const mock = [
-  new FoodClass(
-    0,
-    'https://via.placeholder.com/1600x1600',
-    '',
-    '',
-    'Prato teste 1',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, veniam dolorem! Quis maiores autem ea sit nam at ut tenetur in! Necessitatibus dolorum officia expedita repellat iusto vel sint eligendi.',
-    '19.99',
-    '2 a 3 pessoas'
-  ),
-  new FoodClass(
-    1,
-    'https://via.placeholder.com/1600x1600',
-    '',
-    '',
-    'Prato teste 2',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, veniam dolorem! Quis maiores autem ea sit nam at ut tenetur in! Necessitatibus dolorum officia expedita repellat iusto vel sint eligendi.',
-    '19.99',
-    '2 pessoas'
-  ),
-  new FoodClass(
-    2,
-    'https://via.placeholder.com/1600x1600',
-    '',
-    '',
-    'Prato teste 3',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, veniam dolorem! Quis maiores autem ea sit nam at ut tenetur in! Necessitatibus dolorum officia expedita repellat iusto vel sint eligendi.',
-    '19.99',
-    '3 pessoas'
-  ),
-  new FoodClass(
-    3,
-    'https://via.placeholder.com/1600x1600',
-    '',
-    '',
-    'Prato teste 4',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, veniam dolorem! Quis maiores autem ea sit nam at ut tenetur in! Necessitatibus dolorum officia expedita repellat iusto vel sint eligendi.',
-    '19.99',
-    ''
-  ),
-  new FoodClass(
-    4,
-    'https://via.placeholder.com/1600x1600',
-    '',
-    '',
-    'Prato teste 4',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. At, veniam dolorem! Quis maiores autem ea sit nam at ut tenetur in! Necessitatibus dolorum officia expedita repellat iusto vel sint eligendi.',
-    '19.99',
-    '1 pessoa'
-  )
-]
+import FoodClass from '../../utils/models/food'
+import { useEffect, useState } from 'react'
+import converterValores from '../../utils/Converter'
+import RestaurantClass from '../../utils/models/restaurants'
+import { mock } from '../../utils/Mock'
 
 const RestaurantPage = () => {
   const location = useLocation()
+  const { restId } = useParams()
+  const [restaurants, setRestaurants] = useState<RestaurantClass[]>([])
+  const [nome, setNome] = useState<string>('')
+  const [foodArray, setFoodArray] = useState<FoodClass[]>([])
+  const [bebidaArray, setBebidaArray] = useState<FoodClass[]>([])
+  const [estilo, setEstilo] = useState<string>('')
+  const [image, setImage] = useState<string>('')
+
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      const data = await converterValores()
+      setRestaurants(data)
+
+      if (restId) {
+        const index = parseInt(restId)
+        const restaurant = restaurants[index]
+        if (restaurant) {
+          setNome(restaurant.name)
+          setFoodArray(restaurant.food)
+          setEstilo(restaurant.style)
+          setImage(restaurant.image)
+          setBebidaArray(mock[index].food)
+        }
+      }
+    }
+    fetchRestaurants()
+  }, [restId, restaurants])
 
   useEffect(() => {
     if (location.hash) {
@@ -70,17 +46,21 @@ const RestaurantPage = () => {
     }
   }, [location])
 
+  if (foodArray.length === 0 || bebidaArray.length === 0) {
+    return <h3>Carregando...</h3>
+  }
+
   return (
     <>
       <Banner
         banner="restaurant"
-        estiloRestaurante="italiano"
-        imagemRestaurante={imageTemp}
+        estiloRestaurante={estilo}
+        imagemRestaurante={image}
         logoRestaurante=""
-        nomeRestaurante="Restaurante italiano teste 2"
+        nomeRestaurante={nome}
       />
-      <FoodList section={'Comidas'} foods={mock} />
-      <FoodList section={'Bebidas'} foods={mock} />
+      <FoodList section={'Comidas'} foods={foodArray} />
+      <FoodList section={'Bebidas'} foods={bebidaArray} />
     </>
   )
 }
