@@ -10,4 +10,10 @@ export const BotaoEstilo = styled.button`
   display: block;
   width: 100%;
   padding: 4px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${V.Colors.BegeHover};
+  }
 `

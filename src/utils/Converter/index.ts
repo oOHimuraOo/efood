@@ -10,7 +10,18 @@ type comidaApi = {
   porcao: string
 }
 
-async function converterValores(): Promise<RestaurantClass[]> {
+type restauratesApi = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: comidaApi[]
+}
+
+export async function converterValores(): Promise<RestaurantClass[]> {
   const url = 'https://fake-api-tau.vercel.app/api/efood/restaurantes'
 
   try {
@@ -62,8 +73,6 @@ async function converterValores(): Promise<RestaurantClass[]> {
   }
 }
 
-export default converterValores
-
 function gerarNews(): string {
   return 'Novidade'
 }
@@ -91,4 +100,95 @@ function converterComida(comida: comidaApi, link: string): FoodClass {
     linkcomida
   )
   return novaComida
+}
+
+export function converterModel2(data: restauratesApi[]): RestaurantClass[] {
+  const novoArray: RestaurantClass[] = []
+  data.forEach((Restaurante) => {
+    const id = Restaurante.id - 1
+    const nome = `${Restaurante.titulo}`
+    const estilo = `${Restaurante.tipo}`
+    const news = Restaurante.destacado ? gerarNews() : ''
+    const descricao = `${Restaurante.descricao}`
+    const image = `${Restaurante.capa}`
+    const score = `${Restaurante.avaliacao}`
+    const food: FoodClass[] = []
+    const link = `/${id}`
+    Restaurante.cardapio.forEach((comida: comidaApi) => {
+      food.push(converterComida(comida, link))
+    })
+    novoArray.push(
+      new RestaurantClass(
+        id,
+        image,
+        nome,
+        news,
+        estilo,
+        score,
+        descricao,
+        'Saiba mais',
+        link,
+        food
+      )
+    )
+  })
+  return novoArray
+}
+
+export type food = {
+  id: number
+  image: string
+  promocao: string
+  news: string
+  name: string
+  description: string
+  price: string
+  size: string
+  link: string
+  qtd: number
+}
+
+export function FoodToObject(food: FoodClass): food {
+  const object: food = {
+    id: food.id,
+    image: food.image,
+    promocao: food.promocao,
+    news: food.news,
+    name: food.name,
+    description: food.description,
+    price: food.price,
+    size: food.size,
+    link: food.link,
+    qtd: 1
+  }
+
+  return object
+}
+
+export function converterFormatacaoDePreco(preco: number | string): string {
+  if (typeof preco === 'number' || !isNaN(Number(preco))) {
+    let novoPreco = 0
+
+    if (typeof preco === 'string') {
+      novoPreco = parseFloat(preco)
+    } else {
+      novoPreco = preco
+    }
+
+    const precoFormatado = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(novoPreco)
+
+    return precoFormatado
+  } else {
+    const precoString = preco.replace(/\D/g, '')
+    const novoPreco = parseFloat(precoString)
+    const precoFormatado = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(novoPreco)
+
+    return precoFormatado
+  }
 }

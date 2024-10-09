@@ -4,7 +4,8 @@ export const Colors = {
   Bege: '#FFEBD9',
   BegeClaro: '#FFF8F2',
   Preto: 'rgba(0, 0, 0, 0.8)',
-  BegeHover: '#EEFDD9'
+  BegeHover: '#EEFDD9',
+  VermelhoClaro: '#f88989dd'
 }
 
 export const TxSize = {

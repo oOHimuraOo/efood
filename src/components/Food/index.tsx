@@ -2,62 +2,59 @@ import { useState } from 'react'
 import Tag from '../Tag'
 import * as S from './styles'
 import close from '../../assets/Images/Icons/close 1.png'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/carrinho'
+import FoodClass from '../../utils/models/food'
+import { converterFormatacaoDePreco, FoodToObject } from '../../utils/Converter'
 
 type Props = {
-  id: number
-  image: string
-  promocao: string
-  news: string
-  name: string
-  description: string
-  price: string
-  size: string
+  food: FoodClass
 }
 
-export const Food = ({
-  image,
-  promocao,
-  news,
-  name,
-  description,
-  price,
-  size
-}: Props) => {
+export const Food = ({ food }: Props) => {
   const [modalAberto, setModalAberto] = useState(false)
   const closeModal = () => setModalAberto(false)
+  const dispatch = useDispatch()
+
+  const AdicionarCarrinho = () => {
+    dispatch(add(FoodToObject(food)))
+    dispatch(open())
+  }
 
   return (
     <>
       <S.FoodCardContainer>
         <S.FoodImageContainer>
-          <S.FoodImage src={image} alt="" />
+          <S.FoodImage src={food.image} alt="" />
           <S.Positioner>
-            {news !== '' && <Tag>{news}</Tag>}
-            {promocao !== '' && <Tag>{promocao}</Tag>}
+            {food.news !== '' && <Tag>{food.news}</Tag>}
+            {food.promocao !== '' && <Tag>{food.promocao}</Tag>}
           </S.Positioner>
         </S.FoodImageContainer>
         <S.FoodTitleContainer>
-          <S.FoodTitle>{name}</S.FoodTitle>
-          <S.FoodPrice>{price}</S.FoodPrice>
+          <S.FoodTitle>{food.name}</S.FoodTitle>
+          <S.FoodPrice>{converterFormatacaoDePreco(food.price)}</S.FoodPrice>
         </S.FoodTitleContainer>
-        <S.FoodText>{description}</S.FoodText>
+        <S.FoodText>{food.description}</S.FoodText>
         <S.FoodButton type="button" onClick={() => setModalAberto(true)}>
-          Adicionar ao carrinho
+          Mais detalhes
         </S.FoodButton>
       </S.FoodCardContainer>
       <S.ModalContainer className={modalAberto ? 'visivel' : ''}>
         <S.ModalBackground>
-          <S.ModalImage src={image} alt={name} />
+          <S.ModalImage src={food.image} alt={food.name} />
           <S.ModaltDescriptionContainer>
             <div>
-              <h3>{name}</h3>
-              <p>{description}</p>
+              <h3>{food.name}</h3>
+              <p>{food.description}</p>
               <h4>
                 <b>Serve: </b>
-                {size}
+                {food.size}
               </h4>
             </div>
-            <S.ModalBotao>adicionar ao carrinho - R$ {price}</S.ModalBotao>
+            <S.ModalBotao onClick={AdicionarCarrinho}>
+              adicionar ao carrinho - {converterFormatacaoDePreco(food.price)}
+            </S.ModalBotao>
           </S.ModaltDescriptionContainer>
           <S.Modallink onClick={closeModal}>
             <img src={close} alt="Fechar" />

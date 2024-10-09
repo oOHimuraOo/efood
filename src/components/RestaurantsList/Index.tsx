@@ -2,27 +2,31 @@ import RestaurantClass from '../../utils/models/restaurants'
 import { Container } from '../../utils/Global_Styles'
 import Restaurant from '../Restaurant'
 import { List, RestaurantsContainer } from './styles'
-import { useEffect, useState } from 'react'
-import converterValores from '../../utils/Converter'
+import { converterModel2 } from '../../utils/Converter'
+import { useGetRestaurantsQuery } from '../../services/api'
 
 type Props = {
   section: string
 }
 
 const RestaurantsList = ({ section }: Props) => {
-  const [restaurants, setRestaurants] = useState<RestaurantClass[]>([])
+  const { data, isLoading } = useGetRestaurantsQuery()
 
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      const data = await converterValores()
-      setRestaurants(data)
-    }
-    fetchRestaurants()
-  }, [])
+  // const [restaurants, setRestaurants] = useState<RestaurantClass[]>([])
 
-  if (restaurants.length === 0) {
+  // useEffect(() => {
+  //   const fetchRestaurants = async () => {
+  //     const data = await converterValores()
+  //     setRestaurants(data)
+  //   }
+  //   fetchRestaurants()
+  // }, [])
+
+  if (isLoading || data === undefined) {
     return <h3 id="Restuarantes">Carregando...</h3>
   }
+
+  const restaurants: RestaurantClass[] = converterModel2(data)
 
   return (
     <RestaurantsContainer id={section}>
@@ -37,7 +41,7 @@ const RestaurantsList = ({ section }: Props) => {
                 news={rest.news}
                 name={rest.name}
                 score={rest.score}
-                link={rest.link}
+                link={`${rest.link}#Comidas`}
                 linkTitle={rest.linkTitle}
                 description={rest.description}
               />

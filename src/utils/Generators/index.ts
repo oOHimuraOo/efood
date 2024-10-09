@@ -221,7 +221,7 @@ function geradorDeRestaurante(quantidade: number): RestaurantClass[] {
     const linkTitle = 'Saiba mais'
     const link = `/${x}`
     const food: FoodClass[] = []
-    let count = 0
+    let count = 1000
     AEP[style].forEach((nome: string) => {
       food.push(geradorDeComida(count, nome, link))
       count++
@@ -261,6 +261,5 @@ function geradorDeComida(id: number, Nome: string, link: string): FoodClass {
   )
   return food
 }
-console.log(geradorDeRestaurante(10))
 
 export default geradorDeRestaurante

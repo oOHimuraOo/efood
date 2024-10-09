@@ -16,16 +16,7 @@ const FoodList = ({ section, foods }: Props) => {
         <S.FoodList>
           {foods.map((food) => (
             <li key={food.id}>
-              <Food
-                image={food.image}
-                promocao={food.promocao}
-                news={food.news}
-                name={food.name}
-                price={`R$: ${parseFloat(food.price).toFixed(2)}`}
-                size={food.size}
-                description={food.description}
-                id={food.id}
-              />
+              <Food food={food} />
             </li>
           ))}
         </S.FoodList>
