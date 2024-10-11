@@ -1,10 +1,10 @@
 import { useLocation, useParams } from 'react-router-dom'
 import Banner from '../../components/Banner'
 import FoodList from '../../components/FoodList'
-import FoodClass from '../../utils/models/food'
+import FoodClass from '../../utils/Models/food'
 import { useEffect } from 'react'
 import { converterModel2 } from '../../utils/Converter'
-import RestaurantClass from '../../utils/models/restaurants'
+import RestaurantClass from '../../utils/Models/restaurants'
 import { mock } from '../../utils/Mock'
 import { useGetRestaurantsQuery } from '../../services/api'
 

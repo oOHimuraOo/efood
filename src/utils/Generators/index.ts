@@ -1,5 +1,5 @@
-import FoodClass from '../models/food'
-import RestaurantClass from '../models/restaurants'
+import FoodClass from '../Models/food'
+import RestaurantClass from '../Models/restaurants'
 
 const ASub: string[] = [
   'Sabor',

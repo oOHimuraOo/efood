@@ -4,7 +4,7 @@ import CarrinhoItem from '../CartItem'
 import * as S from './styles'
 import { rootReducer } from '../../store'
 import { close } from '../../store/reducers/carrinho'
-import food from '../../utils/models/food'
+import food from '../../utils/Models/food'
 import { converterFormatacaoDePreco } from '../../utils/Converter'
 
 const Cart = () => {

@@ -1,4 +1,4 @@
-import RestaurantClass from '../../utils/models/restaurants'
+import RestaurantClass from '../../utils/Models/restaurants'
 import { Container } from '../../utils/Global_Styles'
 import Restaurant from '../Restaurant'
 import { List, RestaurantsContainer } from './styles'

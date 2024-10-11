@@ -1,4 +1,4 @@
-import FoodClass from '../../utils/models/food'
+import FoodClass from '../../utils/Models/food'
 import { Container } from '../../utils/Global_Styles'
 import { Food } from '../Food'
 import * as S from './styles'

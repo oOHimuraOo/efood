@@ -2,21 +2,26 @@ import { useState } from 'react'
 import Tag from '../Tag'
 import * as S from './styles'
 import close from '../../assets/Images/Icons/close 1.png'
-import { useDispatch } from 'react-redux'
-import { add, open } from '../../store/reducers/carrinho'
-import FoodClass from '../../utils/models/food'
+import { useDispatch, useSelector } from 'react-redux'
+import { add, ChangeCheckoutRender, open } from '../../store/reducers/carrinho'
+import FoodClass from '../../utils/Models/food'
 import { converterFormatacaoDePreco, FoodToObject } from '../../utils/Converter'
+import { rootReducer } from '../../store'
 
 type Props = {
   food: FoodClass
 }
 
 export const Food = ({ food }: Props) => {
+  const { is_rendering } = useSelector((state: rootReducer) => state.carrinho)
   const [modalAberto, setModalAberto] = useState(false)
   const closeModal = () => setModalAberto(false)
   const dispatch = useDispatch()
 
   const AdicionarCarrinho = () => {
+    if (is_rendering != 0) {
+      dispatch(ChangeCheckoutRender(0))
+    }
     dispatch(add(FoodToObject(food)))
     dispatch(open())
   }

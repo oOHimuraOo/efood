@@ -1,5 +1,6 @@
-import FoodClass from '../models/food'
-import RestaurantClass from '../models/restaurants'
+import { product } from '../../services/api'
+import FoodClass from '../Models/food'
+import RestaurantClass from '../Models/restaurants'
 
 type comidaApi = {
   id: number
@@ -191,4 +192,25 @@ export function converterFormatacaoDePreco(preco: number | string): string {
 
     return precoFormatado
   }
+}
+
+export function converteProdutos(array: food[]): product[] {
+  const novoArray: product[] = []
+  array.forEach((comida) => {
+    for (let x = 0; x < comida.qtd; x++) {
+      const item: product = {
+        id: comida.id,
+        price: parseFloat(comida.price)
+      }
+      novoArray.push(item)
+    }
+  })
+
+  return novoArray
+}
+
+export function converteData(data: string): number[] {
+  const [year, month] = data.split('-')
+
+  return [parseInt(year), parseInt(month)]
 }

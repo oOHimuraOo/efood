@@ -37,6 +37,7 @@ export const CarrinhoEstilo = styled.img`
 `
 export const LinkCarrinho = styled.a`
   display: flex;
+  cursor: pointer;
 
   img {
     margin-left: 16px;
