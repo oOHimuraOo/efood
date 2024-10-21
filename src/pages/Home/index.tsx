@@ -3,54 +3,80 @@ import Banner from '../../components/Banner'
 import RestaurantsList from '../../components/RestaurantsList/Index'
 import RestaurantClass from '../../models/restaurants'
 import { useEffect } from 'react'
+import imgTemp1 from '../../assets/Images/Restaurantes/01.png'
+import imgTemp2 from '../../assets/Images/Restaurantes/2.png'
 
 const mock: RestaurantClass[] = [
   new RestaurantClass(
     0,
-    'https://via.placeholder.com/600x600',
-    'Restaurante Chines Teste 1',
-    'oferstas da semana',
-    'chinesa',
-    '4.8',
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non quis, accusantium nemo repellat nihil sint nesciunt quo cum incidunt expedita. Error obcaecati voluptatem accusantium necessitatibus veniam! Neque optio iusto dolorum!',
+    imgTemp1,
+    'Hioki Sushi',
+    'Destaque da semana',
+    'japonesa',
+    '4.9',
+    'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
     'saiba mais',
     '/restaurante_1#Comidas',
     []
   ),
   new RestaurantClass(
     1,
-    'https://via.placeholder.com/600x600',
-    'Restaurante Japones Teste 2',
+    imgTemp2,
+    'La Dolce Vita Trattoria',
     '',
-    'Japonesa',
-    '4.3',
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non quis, accusantium nemo repellat nihil sint nesciunt quo cum incidunt expedita. Error obcaecati voluptatem accusantium necessitatibus veniam! Neque optio iusto dolorum!',
+    'Italiana',
+    '4.6',
+    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     'saiba mais',
     '/restaurante_2#Comidas',
     []
   ),
   new RestaurantClass(
     2,
-    'https://via.placeholder.com/600x600',
-    'Retaurante Italiano teste 3',
-    'Mais Escolhido',
+    imgTemp2,
+    'La Dolce Vita Trattoria',
+    '',
     'Italiana',
-    '4.9',
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non quis, accusantium nemo repellat nihil sint nesciunt quo cum incidunt expedita. Error obcaecati voluptatem accusantium necessitatibus veniam! Neque optio iusto dolorum!',
+    '4.6',
+    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     'saiba mais',
-    '/restaurante_3#Comidas',
+    '/restaurante_2#Comidas',
     []
   ),
   new RestaurantClass(
     3,
-    'https://via.placeholder.com/600x600',
-    'Restaurante Meditarraneo teste 4',
+    imgTemp2,
+    'La Dolce Vita Trattoria',
     '',
-    'Mediterranea',
-    '3.2',
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non quis, accusantium nemo repellat nihil sint nesciunt quo cum incidunt expedita. Error obcaecati voluptatem accusantium necessitatibus veniam! Neque optio iusto dolorum!',
+    'Italiana',
+    '4.6',
+    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     'saiba mais',
-    '/restaurante_4#Comidas',
+    '/restaurante_2#Comidas',
+    []
+  ),
+  new RestaurantClass(
+    4,
+    imgTemp2,
+    'La Dolce Vita Trattoria',
+    '',
+    'Italiana',
+    '4.6',
+    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
+    'saiba mais',
+    '/restaurante_2#Comidas',
+    []
+  ),
+  new RestaurantClass(
+    5,
+    imgTemp2,
+    'La Dolce Vita Trattoria',
+    '',
+    'Italiana',
+    '4.6',
+    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
+    'saiba mais',
+    '/restaurante_2#Comidas',
     []
   )
 ]
