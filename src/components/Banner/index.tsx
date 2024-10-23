@@ -3,9 +3,9 @@ import texture from '../../assets/Images/texture.png'
 import logo from '../../assets/Images/logo.png'
 import { Container } from '../../utils/Global_Styles'
 import logoInvisivel from '../../assets/Images/Restaurantes/Logo_Invisivel.png'
-import { Link } from 'react-router-dom'
-import { CarrinhoEstilo, LinkCarrinho } from '../Header/styles'
-import carrinho from '../../assets/Images/Icons/shopping-cart 1.svg'
+// import { Link } from 'react-router-dom'
+// import { CarrinhoEstilo, LinkCarrinho } from '../Header/styles'
+// import carrinho from '../../assets/Images/Icons/shopping-cart 1.svg'
 
 type props = {
   banner: 'home' | 'restaurant'
@@ -33,7 +33,7 @@ const Banner = ({
     </S.Imagem>
   ) : (
     <>
-      <S.ImagemSuperior style={{ backgroundImage: `url(${texture})` }}>
+      {/* <S.ImagemSuperior style={{ backgroundImage: `url(${texture})` }}>
         <Container>
           <Link to="/#Restaurantes">Restaurantes</Link>
           <S.LogoEstilo src={logo} alt="Efood" />
@@ -42,7 +42,7 @@ const Banner = ({
             <CarrinhoEstilo src={carrinho} alt="Carrinho de compras" />
           </LinkCarrinho>
         </Container>
-      </S.ImagemSuperior>
+      </S.ImagemSuperior> */}
       <S.BannerImagem style={{ backgroundImage: `url(${imagemRestaurante})` }}>
         <Container>
           <S.EstiloRestaurante>{estiloRestaurante}</S.EstiloRestaurante>
