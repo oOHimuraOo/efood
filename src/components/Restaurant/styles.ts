@@ -45,6 +45,18 @@ export const Texto = styled.p`
   line-height: ${V.lineHeight.M};
   font-weight: ${V.TxWeight.M};
   margin-bottom: 16px;
+  min-height: 110px;
+  max-height: 130px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical; /* Corrige o erro de digitação */
+  -webkit-line-clamp: 6;
+
+  &:hover {
+    max-height: 150px;
+    -webkit-line-clamp: 7;
+  }
 `
 export const ImagemContainer = styled.div`
   position: relative;
@@ -62,5 +74,5 @@ export const Imagem = styled.img`
   max-width: 472px;
   max-height: 217px;
   overflow: hidden;
-  object-fit: none;
+  object-fit: cover;
 `

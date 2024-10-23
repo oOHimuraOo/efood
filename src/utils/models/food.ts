@@ -7,6 +7,7 @@ class FoodClass {
   description: string
   price: string
   size: string
+  link: string
 
   constructor(
     id: number,
@@ -16,7 +17,8 @@ class FoodClass {
     name: string,
     description: string,
     price: string,
-    size: string
+    size: string,
+    link: string
   ) {
     this.id = id
     this.image = image
@@ -26,6 +28,7 @@ class FoodClass {
     this.description = description
     this.price = price
     this.size = size
+    this.link = link
   }
 }
 
