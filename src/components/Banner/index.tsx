@@ -3,6 +3,10 @@ import texture from '../../assets/Images/texture.png'
 import logo from '../../assets/Images/logo.png'
 import { Container } from '../../utils/Global_Styles'
 import logoInvisivel from '../../assets/Images/Restaurantes/Logo_Invisivel.png'
+import { Link } from 'react-router-dom'
+import { CarrinhoEstilo, LinkCarrinho } from '../Header/styles'
+import carrinho from '../../assets/Images/Icons/shopping-cart 1.svg'
+
 type props = {
   banner: 'home' | 'restaurant'
   imagemRestaurante?: string
@@ -28,17 +32,29 @@ const Banner = ({
       </Container>
     </S.Imagem>
   ) : (
-    <S.BannerImagem style={{ backgroundImage: `url(${imagemRestaurante})` }}>
-      <Container>
-        <S.EstiloRestaurante>{estiloRestaurante}</S.EstiloRestaurante>
-        {logoRestaurante === '' ? (
-          <S.LogoRestaurante src={logoInvisivel} alt={''} />
-        ) : (
-          <S.LogoRestaurante src={logoRestaurante} alt={logoRestaurante} />
-        )}
-        <S.NomeRestaurante>{nomeRestaurante}</S.NomeRestaurante>
-      </Container>
-    </S.BannerImagem>
+    <>
+      <S.ImagemSuperior style={{ backgroundImage: `url(${texture})` }}>
+        <Container>
+          <Link to="/#Restaurantes">Restaurantes</Link>
+          <S.LogoEstilo src={logo} alt="Efood" />
+          <LinkCarrinho href="#">
+            0 - produto(s) no carrinho
+            <CarrinhoEstilo src={carrinho} alt="Carrinho de compras" />
+          </LinkCarrinho>
+        </Container>
+      </S.ImagemSuperior>
+      <S.BannerImagem style={{ backgroundImage: `url(${imagemRestaurante})` }}>
+        <Container>
+          <S.EstiloRestaurante>{estiloRestaurante}</S.EstiloRestaurante>
+          {logoRestaurante === '' ? (
+            <S.LogoRestaurante src={logoInvisivel} alt={''} />
+          ) : (
+            <S.LogoRestaurante src={logoRestaurante} alt={logoRestaurante} />
+          )}
+          <S.NomeRestaurante>{nomeRestaurante}</S.NomeRestaurante>
+        </Container>
+      </S.BannerImagem>
+    </>
   )
 }
 

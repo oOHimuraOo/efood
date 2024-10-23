@@ -73,3 +73,30 @@ export const EstiloRestaurante = styled.h3`
   font-size: ${V.TxSize.GG};
   line-height: ${V.lineHeight.GG};
 `
+
+export const ImagemSuperior = styled.div`
+  width: 100%;
+  height: 210px;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      font-size: ${V.TxSize.G};
+      line-height: ${V.lineHeight.G};
+      font-weight: ${V.TxWeight.GG};
+      color: ${V.Colors.Vermelho};
+      background-color: transparent;
+      display: flex;
+
+      img {
+        display: block;
+      }
+    }
+  }
+`
